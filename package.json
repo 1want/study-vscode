@@ -45,7 +45,7 @@
     }
   },
   "scripts": {
-    "build": "tsdown src/index.ts --external vscode",
+     "build": "tsdown --config tsdown.config.ts",
     "dev": "nr build --watch --sourcemap",
     "prepare": "nr update",
     "update": "vscode-ext-gen --output src/generated/meta.ts",
@@ -78,5 +78,10 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
   }
 }
