@@ -9,7 +9,8 @@ export default antfu(
   },
   {
     rules: {
-      'comma-dangle': ['off'],
+      'comma-dangle': 'off',
+      '@typescript-eslint/comma-dangle': 'off',
       'jsonc/sort-keys': 'off'
     }
   }
