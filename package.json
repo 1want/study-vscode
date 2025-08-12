@@ -45,7 +45,7 @@
     }
   },
   "scripts": {
-     "build": "tsdown --config tsdown.config.ts",
+    "build": "tsdown --config tsdown.config.ts",
     "dev": "nr build --watch --sourcemap",
     "prepare": "nr update",
     "update": "vscode-ext-gen --output src/generated/meta.ts",

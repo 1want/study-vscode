@@ -5,11 +5,12 @@ export default antfu(
   {
     ignores: [
       // eslint ignore globs here
-    ],
+    ]
   },
   {
     rules: {
-      // overrides
-    },
-  },
+      'comma-dangle': ['off'],
+      'jsonc/sort-keys': 'off'
+    }
+  }
 )
