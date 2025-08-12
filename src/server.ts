@@ -2,12 +2,9 @@ import {
   createConnection,
   TextDocuments,
   ProposedFeatures,
-  InitializeParams,
   CompletionItem,
   CompletionItemKind,
   Hover,
-  Diagnostic,
-  DiagnosticSeverity,
   TextDocumentSyncKind,
   TextDocumentPositionParams
 } from 'vscode-languageserver/node'
@@ -16,7 +13,7 @@ import { TextDocument } from 'vscode-languageserver-textdocument'
 const connection = createConnection(ProposedFeatures.all)
 const documents = new TextDocuments(TextDocument)
 
-connection.onInitialize((params: InitializeParams) => {
+connection.onInitialize(() => {
   return {
     capabilities: {
       textDocumentSync: TextDocumentSyncKind.Incremental,
@@ -50,24 +47,6 @@ connection.onHover((params: TextDocumentPositionParams): Hover | undefined => {
     if (offset >= start && offset <= end) return { contents: [`你悬浮在：${m[1]}`] }
   }
   return undefined
-})
-
-// 诊断
-documents.onDidChangeContent(change => {
-  const text = change.document.getText()
-  const diagnostics: Diagnostic[] = []
-  if (text.includes('foo')) {
-    diagnostics.push({
-      severity: DiagnosticSeverity.Warning,
-      range: {
-        start: { line: 0, character: 0 },
-        end: { line: 0, character: 3 }
-      },
-      message: '不要写 foo',
-      source: 'ex'
-    })
-  }
-  connection.sendDiagnostics({ uri: change.document.uri, diagnostics })
 })
 
 documents.listen(connection)
